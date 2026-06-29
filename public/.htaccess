@@ -3,6 +3,10 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    # Serve plain PHP files in subdirectories directly
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
     RewriteEngine On
 
     # Handle Authorization Header
