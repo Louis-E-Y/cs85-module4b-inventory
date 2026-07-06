@@ -7,6 +7,8 @@
 
 
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 try {
   $db = new PDO("mysql:host=localhost;dbname=inventory_db", "root", "");
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -14,13 +16,17 @@ try {
   $stmt = $db->query("SELECT * FROM items");
   $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($items as $item) {
-        echo "<tr>";
-        echo "<td>{$item['item_name']}</td>";
-        echo "<td>{$item['quantity']}</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
+echo "<table border='1'>";
+echo "<tr><th>Item</th><th>Quantity</th></tr>";
+
+foreach ($items as $item) {
+    echo "<tr>";
+    echo "<td>" . $item['item_name'] . "</td>";
+    echo "<td>" . $item['quantity'] . "</td>";
+    echo "</tr>";
+}
+
+echo "</table>";
 
 } catch (PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
@@ -34,7 +40,7 @@ the db is scaled up.
 
 To my understanding PDO protects against injection attacks because it separates
 the user input and the SQL query, so that the user input is treated as data
-rather than executable code.
+ rather than executable code.
 */
 ?>
 
