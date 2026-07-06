@@ -14,5 +14,7 @@ Route::get('/module2b/cosmic_calendar', function () {
 Route::get('/module3a/contact_form', function () {
     include public_path('module3a/ContactForm.php');
 });
-
+Route::get('/module4b/show_inventory', function () {
+    include public_path('module4b/show_inventory.php');
+});
 
